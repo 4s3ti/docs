@@ -20,8 +20,8 @@ jobs:
         - pip install mkdocs-material
       script:
         - mkdocs build
-        - docker build -t pivpn/pr-docs:$TRAVIS_PULL_REQUEST
-        - docker push pivpn/pr-docs:$TRAVIS_PULL_REQUEST
+        - docker build -t $pr-repo:$TRAVIS_PULL_REQUEST
+        - docker push $pr-repo:$TRAVIS_PULL_REQUEST
 
     - stage: "Build&Publish"
       name: "Build&Deploy" 
@@ -32,5 +32,5 @@ jobs:
         - pip install mkdocs-material
       script:
         - mkdocs build
-        - docker build -t pivpn/docs:$tag .
-        - docker push pivpn/docs:$tag
+        - docker build -t $docsrepo:$tag .
+        - docker push $docsrepo:$tag
