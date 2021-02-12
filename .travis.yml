@@ -20,7 +20,7 @@ jobs:
         - pip install mkdocs-material
       script:
         - mkdocs build
-        - docker build -t $prrepo:$TRAVIS_PULL_REQUEST
+        - docker build -t $prrepo:$TRAVIS_PULL_REQUEST .
         - docker push $prrepo:$TRAVIS_PULL_REQUEST
 
     - stage: "Build&Publish"
