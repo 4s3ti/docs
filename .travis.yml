@@ -13,10 +13,11 @@ jobs:
     - stage: test-pr
       name: "Test PR"
       if: type = pull_request
-      before_script:
-        - echo $dockerpass | docker login -u $dockeruser --password-stdin
       install:
         - pip install mkdocs-material
+      before_script:
+        - echo $dockerpass | docker login -u $dockeruser --password-stdin
+        - mkdocs --version
       script:
         - mkdocs build
         - docker build -t $prrepo:$TRAVIS_PULL_REQUEST .
